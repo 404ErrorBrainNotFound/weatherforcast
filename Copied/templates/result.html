@@ -1,0 +1,25 @@
+{% extends "layouts/main_layout.html" %}
+{% block mainContent %}
+<section class="result">
+    <h2><small class="text-muted">Forecast for</small> {{combined_data[0][1]}}</h2>
+    <div class="container-fluid">
+
+   {% for name, day_data in combined_data[1:] %}
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+        <div class="card-header"><strong>{{ name }}</strong></div>
+        <div class="card-body {% if day_data[0] == 'broken clouds' %} bro-clo {% elif day_data[0] == 'clear sky' %} clsky {% endif %}">
+            <article>
+                <p>{{ day_data[0] }}</p>
+                <em>Temperature: {{ day_data[1] }}°C</em>
+                <br>
+                <em>Humidity: {{ day_data[2] }}</em>
+                <p>Wind Speed: {{ day_data[3] }} kmph</p>
+            </article>
+        </div>
+    </div>
+{% endfor %} 
+
+
+    
+
+{% endblock %}
